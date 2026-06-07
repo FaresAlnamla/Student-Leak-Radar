@@ -27,6 +27,8 @@ venv/
 .env
 .env.*
 *.env
+!.env.example
+!**/.env.example
 
 # =========================================================
 # Machine Learning Artifacts
@@ -47,6 +49,8 @@ data/processed/
 # =========================================================
 .codex-run/
 *.log
+*.err
+*.out
 
 # =========================================================
 # Node.js
@@ -54,6 +58,9 @@ data/processed/
 node_modules/
 frontend/node_modules/
 /package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # =========================================================
 # Frontend Build Outputs
@@ -62,6 +69,19 @@ dist/
 build/
 frontend/dist/
 frontend/build/
+.vite/
+frontend/.vite/
+coverage/
+frontend/coverage/
+
+# =========================================================
+# Python Tool Caches
+# =========================================================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
 # =========================================================
 # Generated Reports & Assets
@@ -73,6 +93,7 @@ poster/
 # Archives & Backups
 # =========================================================
 archive/
+/project/
 
 # =========================================================
 # Local Utility Files
