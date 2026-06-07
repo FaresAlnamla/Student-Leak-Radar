@@ -53,6 +53,7 @@ data/processed/
 # =========================================================
 node_modules/
 frontend/node_modules/
+/package-lock.json
 
 # =========================================================
 # Frontend Build Outputs
@@ -78,4 +79,3 @@ archive/
 # =========================================================
 *.ps1
 folder_structure.txt
-

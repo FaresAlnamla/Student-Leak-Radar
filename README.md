@@ -94,27 +94,42 @@ Backend and ML:
 ## Repository Structure
 
 ```text
-project/
+Student-Leak-Radar/
 |-- backend/
 |   |-- api/
-|   |   |-- main.py
+|   |   `-- main.py              # FastAPI app, model loading, prediction routes
 |   |-- src/
-|   |   |-- processing.py
-|   |-- requirements.txt
+|   |   `-- processing.py        # Data cleaning and feature preparation helpers
+|   |-- notebooks/               # EDA, feature engineering, and model experiments
+|   |-- reports/                 # Backend-generated analysis artifacts
+|   |-- models/                  # Local model files only; not committed
+|   |-- .env.example             # Backend environment variable template
+|   `-- requirements.txt         # Python dependencies
 |-- frontend/
+|   |-- public/                  # Static assets served by Vite
 |   |-- src/
-|   |   |-- App.jsx
-|   |   |-- HomePage.jsx
-|   |   |-- PredictWizard.jsx
-|   |   |-- EdaPage.jsx
+|   |   |-- components/           # Reusable UI and visualization components
+|   |   |-- assets/               # Frontend image/SVG assets
+|   |   |-- App.jsx               # Application shell and routing layout
+|   |   |-- HomePage.jsx          # Landing and project overview page
+|   |   |-- PredictWizard.jsx     # Manual and batch prediction workflow
+|   |   |-- EdaPage.jsx           # Intelligence Lab analytics page
 |   |   |-- CsvRequirementsPage.jsx
-|   |   |-- ModelOutputPage.jsx
-|   |-- package.json
-|   |-- vite.config.js
-|-- reports/
-|-- poster/
-|-- archive/
+|   |   `-- ModelOutputPage.jsx
+|   |-- .env.example             # Frontend environment variable template
+|   |-- package.json             # Frontend scripts and dependencies
+|   `-- vite.config.js
+|-- data/                        # Local/raw project data; keep large files out of Git
+|-- reports/                     # Project-level writeups and deliverables
+|-- poster/                      # Presentation/poster material
+|-- archive/                     # Older project material kept for reference
+|-- .gitignore
+|-- .gitattributes
+`-- README.md
 ```
+
+Local-only folders such as `.venv/`, `node_modules/`, `dist/`, `__pycache__/`, and runtime log files are intentionally excluded from the clean structure above.
+The tracked app lockfile lives in `frontend/package-lock.json`; there is no root `package.json`, so the repository does not keep a root-level lockfile.
 
 ## Local Development
 
@@ -126,7 +141,7 @@ Prerequisites:
 Start the backend:
 
 ```powershell
-cd project\backend
+cd backend
 py -3.11 -m venv .venv
 .\.venv\Scripts\activate
 python -m pip install --upgrade pip
@@ -137,7 +152,7 @@ uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
 Start the frontend:
 
 ```powershell
-cd project\frontend
+cd frontend
 npm install
 npm run dev -- --host 127.0.0.1 --port 5173
 ```
@@ -189,7 +204,7 @@ After changing any Vercel environment variable, redeploy the frontend so Vite in
 Frontend:
 
 ```powershell
-cd project\frontend
+cd frontend
 npm run lint
 npm run build
 ```
@@ -197,7 +212,7 @@ npm run build
 Backend:
 
 ```powershell
-cd project\backend
+cd backend
 python -m compileall api src
 ```
 
